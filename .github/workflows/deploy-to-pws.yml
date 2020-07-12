@@ -1,0 +1,36 @@
+name: Deploy to Pivotal
+
+on:
+  push:
+    branches:
+    - master
+    paths:
+      - "manifest-pws.yml"
+      - ".github/workflows/deploy-to-pws.yml"
+  schedule:
+    - cron: "0 21 * * 3"
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - run: |
+        wget -q https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip
+        unzip v2ray-linux-64.zip
+        rm -rf v2ray-linux-64.zip doc system* vpoint*
+        chmod 700 v2ray v2ctl
+        
+    - uses: citizen-of-planet-earth/cf-cli-action@v1
+      with:
+        cf_api: https://api.run.pivotal.io
+        cf_username: ${{ secrets.CF_USER_PWS }}
+        cf_password: ${{ secrets.CF_PASSWORD_PWS }}
+        cf_org: AwesomeApp
+        cf_space: Development
+        command: >
+          push -f manifest-pws.yml --no-start > /dev/null 2>&1 && 
+          cf set-env v2ws CONFIG_URL ${{ secrets.CF_CONFIG_URL_PWS }} && 
+          cf start v2ws > /dev/null 2>&1
+        
