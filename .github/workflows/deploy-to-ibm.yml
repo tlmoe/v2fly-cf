@@ -30,7 +30,7 @@ jobs:
         cf_org: AwesomeApp
         cf_space: Development
         command: >
-          push -f manifest-ibm.yml --no-start > /dev/null 2>&1 && 
+          push v2ws -f manifest-ibm.yml --no-start  && 
           cf set-env v2ws CONFIG_URL ${{ secrets.CF_CONFIG_URL_IBM }} && 
-          cf start v2ws > /dev/null 2>&1
+          cf start v2ws  
         
