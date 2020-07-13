@@ -4,9 +4,6 @@ on:
   push:
     branches:
     - master
-    paths:
-      - "manifest-ibm.yml"
-
   schedule:
     - cron: "0 21 * * 3"
 
