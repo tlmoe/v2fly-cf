@@ -6,7 +6,7 @@ on:
     - master
     paths:
       - "manifest-ibm.yml"
-      - ".github/workflows/deploy-to-ibm.yml"
+
   schedule:
     - cron: "0 21 * * 3"
 
