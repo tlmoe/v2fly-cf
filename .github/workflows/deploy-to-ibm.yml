@@ -15,7 +15,7 @@ jobs:
     
     - run: |
         wget -q https://github.com/v2fly/v2ray-core/releases/latest/download/v2ray-linux-64.zip
-        unzip v2ray-linux-64.zip "v2ray" "v2ctl"
+        unzip -o v2ray-linux-64.zip "v2ray" "v2ctl" "geosite.dat" "geoip.dat" 
         rm -rf v2ray-linux-64.zip
         chmod 700 v2ray v2ctl
         cat > config.json << EOF
@@ -67,3 +67,4 @@ jobs:
         cf_space: ${{ secrets.CF_SPACE_IBM }}
         command: >
           push v2ws -f manifest-ibm.yml
+          
