@@ -8,7 +8,7 @@ on:
       - "manifest-ibm.yml"
       - ".github/workflows/deploy-to-ibm.yml"
   schedule:
-    - cron: "0 20 * * 3"
+    - cron: "0 02 * * 1"
 
 jobs:
   deploy:
