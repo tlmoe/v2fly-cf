@@ -27,8 +27,8 @@ jobs:
         cf_api: https://api.us-south.cf.cloud.ibm.com
         cf_username: ${{ secrets.CF_USER_IBM }}
         cf_password: ${{ secrets.CF_PASSWORD_IBM }}
-        cf_org: AwesomeApp
-        cf_space: Development
+        cf_org: ${{ secrets.CF_ORG_IBM }}
+        cf_space: ${{ secrets.CF_SPACE_IBM }}
         command: >
           push -f manifest-ibm.yml --no-start > /dev/null 2>&1 && 
           cf set-env v2ws CONFIG_URL ${{ secrets.CF_CONFIG_URL_IBM }} && 
