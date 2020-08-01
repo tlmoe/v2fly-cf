@@ -6,7 +6,8 @@ on:
     - master
   schedule:
     - cron: "0 21 * * 3"
-
+  workflow_dispatch:
+  
 jobs:
   deploy:
     runs-on: ubuntu-latest
