@@ -9,6 +9,7 @@ on:
       - ".github/workflows/deploy-to-pws.yml"
   schedule:
     - cron: "0 21 * * 3"
+  workflow_dispatch:
 
 jobs:
   deploy:
